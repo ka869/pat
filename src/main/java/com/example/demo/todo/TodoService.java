@@ -8,43 +8,14 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
-@RequiredArgsConstructor
+
 public class TodoService {
-    private final TodoRepository todoRepository;
+    // Task 1: code getAllItems()
+    // throw exception if no todo items exist in table
 
-    public List<Todo> getAllItems(String filterText) throws Exception {        
-        List<Todo> items = new ArrayList<Todo>();
+    // Task 2: code getItemById()
 
-        if (filterText == null) {
-            todoRepository
-                .findAll()
-                .forEach(items::add);
-        } else {
-            todoRepository
-                .findAll()
-                .stream()
-                .filter(s->s.getItem().contains(filterText))
-                .forEach(items::add);
-        }
+    // Task 3: code createItem()
 
-        if (items.isEmpty()) {
-            throw new Exception("not found");
-        }
-
-        return items;
-    }
-
-    public Optional<Todo> getItemById(Long id) {
-        return todoRepository.findById(id);
-    }
-
-    public Todo createItem(String text) {
-        Todo item = todoRepository.saveAndFlush(Todo.builder().item(text).build());
-        return item;
-    }
-
-    public void deleteItem(Long id) {
-        todoRepository.deleteById(id);
-    }
+    // Task 4: code deleteItem()
 }

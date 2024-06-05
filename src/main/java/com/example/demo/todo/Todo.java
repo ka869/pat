@@ -11,17 +11,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Builder
+/*
+ * Task: Finish entity creation with 2 additional columns:
+ *   - "item" to hold the todo text string
+ *   - "timestamp" to hold the date and time value
+ */
 @Table(name = "todo")
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "item")
-    private String item;
+    // code
 }
