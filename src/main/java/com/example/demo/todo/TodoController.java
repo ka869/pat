@@ -15,53 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.RequiredArgsConstructor;
-
 @CrossOrigin(origins = "*")
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api")
 public class TodoController {
-    private final TodoService todoService;
 
-    @GetMapping("/items")
-    public ResponseEntity<List<Todo>> getAllTodos(@RequestParam(required = false) String filterText) {
-        try {
-			List<Todo> todoItems = todoService.getAllItems(filterText);
-			return new ResponseEntity<>(todoItems, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+    /*
+	 * Task 1: Return list of items with 200 Ok Http status
+	 * Task 1.1: Add a request param that can be optionally provided to search todo items containing the string
+	 */
+	@GetMapping("/items")
+    public ResponseEntity<List<Todo>> getAllTodos() {
+		// code
     }
 
+	/*
+	 * Task 2: Return an item by id with 200 Ok Http status if found, else 404 not found
+	 */
     @GetMapping("/items/{id}")
-    public ResponseEntity<Todo> getTodoById(@PathVariable("id") Long id) {
-        Optional<Todo> todoData = todoService.getItemById(id);
-
-		if (todoData.isPresent()) {
-			return new ResponseEntity<>(todoData.get(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+    public ResponseEntity<Todo> getTodoById() {
+        // code
     }
 
-	@PostMapping("/items")
-	public ResponseEntity<Todo> createTodo(@RequestBody String text) {
-		try {
-			final var item = todoService.createItem(text);
-			return new ResponseEntity<>(item, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	// Task 3: Add POST mapping to create an item and return the item created with 201 Http status
+	public ResponseEntity<Todo> createTodo() {
+		// code
 	}
 
+	// Task 4: Add DELETE mapping to delete an item and return 204 no content http status
 	@DeleteMapping("/tutorials/{id}")
 	public ResponseEntity<HttpStatus> deleteTodo(@PathVariable("id") Long id) {
-		try {
-			todoService.deleteItem(id);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		// code
 	}
 }
