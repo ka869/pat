@@ -13,24 +13,13 @@ import lombok.RequiredArgsConstructor;
 public class TodoService {
     private final TodoRepository todoRepository;
 
-    public List<Todo> getAllItems(String filterText) throws Exception {        
+    // Task 1: Return items list if filterText param is not provided
+    // Task 2: Use Stream API to filter the items which contain filterText
+    // Task 3: Throw an exception if allItems is empty
+    // Task 4: Use Stream API to add timetamp to each item
+    public List<Todo> getAllItems(String filterText) {      
+        final var allItems = todoRepository.findAll();
         List<Todo> items = new ArrayList<Todo>();
-
-        if (filterText == null) {
-            todoRepository
-                .findAll()
-                .forEach(items::add);
-        } else {
-            todoRepository
-                .findAll()
-                .stream()
-                .filter(s->s.getItem().contains(filterText))
-                .forEach(items::add);
-        }
-
-        if (items.isEmpty()) {
-            throw new Exception("not found");
-        }
 
         return items;
     }

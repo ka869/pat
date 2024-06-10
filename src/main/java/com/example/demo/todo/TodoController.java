@@ -26,12 +26,8 @@ public class TodoController {
 
     @GetMapping("/items")
     public ResponseEntity<List<Todo>> getAllTodos(@RequestParam(required = false) String filterText) {
-        try {
-			List<Todo> todoItems = todoService.getAllItems(filterText);
-			return new ResponseEntity<>(todoItems, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		// code
+		return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @GetMapping("/items/{id}")
