@@ -16,11 +16,23 @@ import lombok.NoArgsConstructor;
  *   - "item" to hold the todo text string
  *   - "timestamp" to hold the date and time value
  */
+@Entity
 @Table(name = "todo")
+    @Getter
+    @Setter
+    @builder
+    
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @column(nullable= false)
+    private String item
+
+    @column(nullable= false)
+    private LocalDateTime= timestamp;
+    
 
     // code
 }
