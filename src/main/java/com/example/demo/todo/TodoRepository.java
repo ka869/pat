@@ -6,7 +6,10 @@ import org.springframework.stereotype.Repository;
 /*
  * Task: Setup base JPA repository to link the Todo entity
  */
-public interface TodoRepository {
 
+@Repository
+public interface TodoRepository  extends JpaRepository<Todo, Long>{
+List<Todo>  findByItemContaingIgnoreCase(String item);
+    
     
 }
